@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt_br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Carro</title>
+</head>
+
+<body>
+    <h2>Editar Carro</h2>
+    <form id="editarCarroForm">
+        <input type="hidden" id="carroId" name="carroId">
+        <label for="marca">Marca:</label>
+        <input type="text" id="marca" name="marca" required><br>
+
+        <label for="modelo">Modelo:</label>
+        <input type="text" id="modelo" name="modelo" required><br>
+
+        <label for="ano">Ano:</label>
+        <input type="text" id="ano" name="ano" required><br>
+
+        <label for="placa">Placa:</label>
+        <input type="text" id="placa" name="placa" required><br>
+
+        <label for="capacidade">Capacidade:</label>
+        <input type="text" id="capacidade" name="capacidade" required><br>
+
+        <button type="button" onclick="salvarEdicao()">Salvar Edição</button>
+    </form>
+
+    <script>
+
+        // Obtém o ID do carro da URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const carroId = urlParams.get('id');
+
+
+        // Função para preencher o formulário com os detalhes do carro
+        function preencherFormulario(carro) {
+            document.getElementById('marca').value = carro.marca;
+            document.getElementById('modelo').value = carro.modelo;
+            document.getElementById('ano').value = carro.ano;
+            document.getElementById('placa').value = carro.placa;
+            document.getElementById('capacidade').value = carro.capacidade_passageiros;
+        }
+
+        // Função para salvar a edição
+        function salvarEdicao() {
+            // Recupera os dados do formulário
+            let idCarro = carroId;
+            let marca = document.getElementById('marca').value;
+            let modelo = document.getElementById('modelo').value;
+            let ano = document.getElementById('ano').value;
+            let placa = document.getElementById('placa').value;
+            let capacidade = document.getElementById('capacidade').value;
+
+            // Envia os dados para o arquivo PHP para salvar a edição
+            let xhr = new XMLHttpRequest();
+            xhr.open('POST', 'editar_carro.php', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    alert('Carro editado com sucesso');
+                    // Redireciona para a página de listagem ou realiza outra ação necessária
+                    window.location.href = 'cadastroVei.html';
+                }
+            }
+
+            xhr.send('carroId=' + carroId + '&marca=' + marca + '&modelo=' + modelo + '&ano=' + ano + '&placa=' + placa + '&capacidade=' + capacidade);
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+<?php
+include once "coneção.php"
+
+?>
+<!DOCTYPE html>
+<html lang="pt_br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cadastro veiculo</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+
+<body style="background-color: aquamarine;">
+    <div class="container">
+        <h2>Cadastro de Carros</h2>
+    </div>
+    <div class="container">
+        <form id="cadastro2">
+            <div class="form-group">
+                <label for="marca">Marca</label>
+                <input type="text" id="marca" name="marca" required class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="modelo">Modelo</label>
+                <input type="text" id="modelo" name="modelo" required class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="ano">Ano</label>
+                <input type="number" id="ano" name="ano" min="1900" max="2023" required class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="placa">Placa</label>
+                <input type="text" id="placa" name="placa" required class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="capacidade">Capacidade de Passageiros</label>
+                <input type="number" id="capacidade" name="capacidade" min="1" required class="form-control">
+            </div>
+            <div>
+                <button type="submit" class="btn btn-primary">Cadastrar</button>
+            </div>
+        </form>
+    </div>
+    <div>
+            <button onclick="buscarCarro()" class="btn btn-primary" style="margin-left: 135px; margin-top: 20px;">Buscar Carros</button>
+        </div>
+    </div>
+    <div class="mt-4 container">
+        <table id="carrosTable" class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">Marca</th>
+                    <th scope="col">Modelo</th>
+                    <th scope="col">Ano</th>
+                    <th scope="col">Placa</th>
+                    <th scope="col">Capacidade</th>
+                    <th scope="col">Ações</th>
+                </tr>
+            </thead>
+            <tbody id="carrosBody">
+                <!-- Dados dos carros serão exibidos aqui -->
+            </tbody>
+        </table>
+    </div>
+    <script src="cadastrocarro.js"></script>
+</body>
+</html>

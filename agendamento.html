@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+
+<body style="background-color: aquamarine;">
+    <div class="container">
+        <h2>Agendamento de Aulas</h2>
+    </div>
+    <div class="container">
+        <form id="agendamento">
+            <div class="form-group">
+                <label for="aluno">Aluno:</label>
+                <select id="aluno" name="aluno" onclick="selectAlunos()" class="form-control"></select>
+            </div>
+            <div class="form-group">
+                <label for="carro">Carro:</label>
+                <select id="carro" name="carro" onclick="selectCarro()" class="form-control">
+                    <!-- Adicione mais opções conforme necessário -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="data">Data:</label>
+                <input type="date" id="data" name="data" required class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="horario">Horário:</label>
+                <input type="time" id="horario" name="horario" required class="form-control">
+            </div>
+            <div>
+                <button type="button" onclick="agendarAula()" class="btn btn-primary">Agendar Aula</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="container mt-2">
+        <h4>Agendamentos Existentes</h4>
+    </div>
+    <div class="mt-4 container">
+        <table id="agendamentosTable" class="table table-dark">
+            <thead>
+                <tr>
+                    <th>Aluno</th>
+                    <th>Carro</th>
+                    <th>Data</th>
+                    <th>Horário</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="agendamentosBody">
+                <!-- Dados dos agendamentos serão exibidos aqui -->
+            </tbody>
+        </table>
+    </div>
+    <script src="agendamento.js"></script>
+</body>
+
+</html>

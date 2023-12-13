@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt_br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar aluno</title>
+</head>
+
+<body>
+    <h2>Editar Carro</h2>
+    <form id="editarAlunoForm">
+        <input type="hidden" id="alunoId" name="alunoId">
+        <label for="nome">nome:</label>
+        <input type="text" id="nome" name="nome" required><br>
+
+        <label for="modelo">CPF:</label>
+        <input type="text" id="cpf" name="cpf" required><br>
+
+        <label for="ano">Data Nascimento:</label>
+        <input type="text" id="datanascimento" name="datanascimento" required><br>
+
+        <label for="placa">Endereço:</label>
+        <input type="text" id="endereco" name="endereco" required><br>
+
+        <label for="capacidade">telefone:</label>
+        <input type="text" id="telefone" name="telefone" required><br>
+
+        <button type="button" onclick="salvarEdicao()">Salvar Edição</button>
+    </form>
+
+    <script>
+
+        // Obtém o ID do aluno da URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const aluno = urlParams.get('id');
+
+
+        // Função para preencher o formulário com os detalhes do aluno
+        function preencherFormulario(aluno) {
+            document.getElementById('nome').value = aluno.nome;
+            document.getElementById('cpf').value = aluno.cpf;
+            document.getElementById('datanascimento').value = aluno.datanascimento;
+            document.getElementById('endereco').value = aluno.endereco;
+            document.getElementById('telefone').value = aluno.telefone;
+        }
+
+        // Função para salvar a edição
+        function salvarEdicao() {
+            // Recupera os dados do formulário
+            let idaluno = aluno;
+            let marca = document.getElementById('nome').value;
+            let modelo = document.getElementById('cpf').value;
+            let ano = document.getElementById('datanascimento').value;
+            let placa = document.getElementById('endereco').value;
+            let capacidade = document.getElementById('telefone').value;
+
+            // Envia os dados para o arquivo PHP para salvar a edição
+            let xhr = new XMLHttpRequest();
+            xhr.open('POST', 'editar_aluno.php', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    alert('aluno editado com sucesso');
+                    // Redireciona para a página de listagem ou realiza outra ação necessária
+                    window.location.href = 'cadastroAl.html';
+                }
+            }
+
+            xhr.send('alunoId=' + alunoId + '&nome=' + nome + '&cpf=' + cpf + '&datanascimento=' + datanascimento + '&endereco=' + endereco + '&telefone=' + telefone);
+        }
+
+    </script>
+</body>
+
+</html>
